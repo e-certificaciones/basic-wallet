@@ -1,0 +1,4 @@
+Flask
+app 
+python-dotenv
+flask_session
