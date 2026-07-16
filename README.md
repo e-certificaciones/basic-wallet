@@ -7,3 +7,5 @@
    `flask --app run.py run` 
    or 
    `python run.py`
+4. Database:
+   `python -m sqlite3 wallet.db`

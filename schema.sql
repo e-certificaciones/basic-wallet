@@ -5,7 +5,7 @@ CREATE TABLE users (
     email TEXT NOT NULL,
     name TEXT NOT NULL,
     last_name TEXT NOT NULL,
-    birthday TEXT NOT NULL, -- simulando una fecha
+    birthday TEXT NOT NULL -- simulando una fecha
 );
 
 CREATE TABLE acounts (
@@ -27,3 +27,6 @@ CREATE TABLE transactions(
     FOREIGN KEY(sender_acount_id) REFERENCES acounts(id),
     FOREIGN KEY(recipient_acount_id) REFERENCES acounts(id)
 );
+
+-- admin
+-- admin1

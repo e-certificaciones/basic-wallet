@@ -2,6 +2,7 @@ from flask import Flask
 from app.config import Config
 from app.extensions import sess
 from app.auth import auth_bp
+from app.db import close_db
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -12,6 +13,9 @@ def create_app(config_class=Config):
     # tambien lee los atributos de la clase Config
     sess.init_app(app)
 
+    # cierra las conexiones a la bd cada vez que le indicamos al navegador cambiar de url (request)
+    app.teardown_appcontext(close_db)
+    
     # Blueprints
     app.register_blueprint(auth_bp)
 
