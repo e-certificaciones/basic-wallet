@@ -1,0 +1,7 @@
+.center-container
+{
+    display: flex !important; /*make a box flexible*/
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+}
+

@@ -1,4 +1,4 @@
-from app.config import get_db
+from app.db import get_db
 
 def get_user_by_username(username):
     db = get_db()

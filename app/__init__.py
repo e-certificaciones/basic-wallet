@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
 from app.config import Config
 from app.extensions import sess
 from app.auth import auth_bp
 from app.db import close_db
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -21,6 +22,6 @@ def create_app(config_class=Config):
 
     @app.route("/ping")
     def ping():
-        return "ok"
+        return render_template("layout.html", string="HI")
 
     return app

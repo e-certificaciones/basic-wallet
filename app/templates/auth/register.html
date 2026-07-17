@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block script %}
+<script src="/static/js/validate-register.js"> </script>
+{% endblock %}
+
+{% block title %}
+register
+{% endblock %}
+
+{% block main %}
+<div class="center-container">
+    <form action="{{url_for('auth.login')}}" method="post">
+        <h4>Register</h4>
+        <div class="mb-3" id="div-name">
+            <label for="input-name" class="form-label">Name: </label>
+            <input type="text" class="form-control" id="input-name" name="input-name" autocomplete="off">
+            <p id="error-name"></p>
+        </div>
+        <div class="mb-3" id="div-last-name">
+            <label for="input-last-name" class="form-label">Last name: </label>
+            <input type="text" class="form-control" id="input-last-name" name="input-last-name" autocomplete="off">
+            <p id="error-last-name"></p>
+        </div>
+        <div class="mb-3" id="div-email">
+            <label for="input-email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" name="input-email" autocomplete="off">
+            <p id="error-email"></p>
+        </div>
+        <div class="mb-3" id="div-username">
+            <label for="input-username" class="form-label">Create username: </label>
+            <input type="text" class="form-control" id="input-username" name="input-username" autocomplete="off">
+            <p id="error-username"></p>
+        </div>
+        <div class="mb-3" id="div-password">
+            <label for="input-password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="input-password" name="input-password" autocomplete="off">
+            <p id="error-password"></p>
+        </div>
+        <div class="mb-3" id="div-confirm-password">
+            <label for="input-confirm-password" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="input-confirm-password" name="input-confirm-password" autocomplete="off">
+            <p id="error-confirm-password"></p>
+        </div>
+        <div class="mb-3" id="div-birthday">
+            <label for="input-birthday" class="form-label">Birthday</label>
+            <input type="date" class="form-control" id="input-birthday" name="input-birthday" autocomplete="off">
+            <p id="error-calendar"></p>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <p id="error-checkbox"></p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

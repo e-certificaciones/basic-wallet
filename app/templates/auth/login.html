@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title%}
+login
+{% endblock %}
+
+{% block main %}
+<div class="center-container">
+    <div class="card" style="width: 18rem;">
+        <img src="/static/img/user.png" class="w-50 img-fluid d-block mx-auto" >
+        <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <form action="{{url_for('auth.login')}}" method="post"> <!-- es mas recomendable usar url_for('blue_print.route') que la ruta manual -->
+                <label>Username: </label>
+                <input type="text" placeholder="username" name="username" autocomplete="off">
+                <label>Password: </label>
+                <input type="password" placeholder="password" name="password" autocomplete="off">
+                <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 2%;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
