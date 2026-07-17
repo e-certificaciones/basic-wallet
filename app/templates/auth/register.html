@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block script %}
-<script src="/static/js/validate-register.js"> </script>
+<!--
+<script src="/static/js/validate-register.js"> </script> -->
 {% endblock %}
 
 {% block title %}
@@ -10,47 +11,85 @@ register
 
 {% block main %}
 <div class="center-container">
-    <form action="{{url_for('auth.login')}}" method="post">
+    <form action="{{url_for('auth.register')}}" method="post">
         <h4>Register</h4>
         <div class="mb-3" id="div-name">
             <label for="input-name" class="form-label">Name: </label>
+            <!-- para data no es conveniente usar un diccionario vacio en el get puesto que siempre tendrias que usar un if else para que 
+             el archivo de validacion js pueda tomar el id del input de la condicion else de la platilla porque necesita que el dom siempre
+             lo muestre y antes de hacer un post el else siempre se ejecuta porque en el get no existe data -->
+            {% if data %}
+            <input type="text" class="form-control" id="input-name" name="input-name" autocomplete="off" value="{{data.name}}">
+            {% else %}
             <input type="text" class="form-control" id="input-name" name="input-name" autocomplete="off">
-            <p id="error-name"></p>
+            {% endif %}
+
+            <p id="error-name"><b class="error-message">{{ error.name }}</b></p>
         </div>
         <div class="mb-3" id="div-last-name">
             <label for="input-last-name" class="form-label">Last name: </label>
+            {% if data %}
+            <input type="text" class="form-control" id="input-last-name" name="input-last-name" autocomplete="off" value="{{data.last_name}}">
+            {% else %}
             <input type="text" class="form-control" id="input-last-name" name="input-last-name" autocomplete="off">
-            <p id="error-last-name"></p>
+            {% endif %}
+
+            <p id="error-last-name"><b class="error-message">{{error.last_name}}</b></p>
         </div>
         <div class="mb-3" id="div-email">
             <label for="input-email" class="form-label">Email address</label>
+            {% if data %}
+            <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" name="input-email" autocomplete="off" value="{{data.email}}">
+            {% else %}
             <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" name="input-email" autocomplete="off">
-            <p id="error-email"></p>
+            {% endif%}
+            
+            <p id="error-email"><b class="error-message">{{error.email}}</b></p>
         </div>
         <div class="mb-3" id="div-username">
             <label for="input-username" class="form-label">Create username: </label>
+            {% if data %}
+            <input type="text" class="form-control" id="input-username" name="input-username" autocomplete="off" value="{{data.username}}">
+            {% else %}
             <input type="text" class="form-control" id="input-username" name="input-username" autocomplete="off">
-            <p id="error-username"></p>
+            {% endif %}
+
+            <p id="error-username"><b class="error-message">{{ error.username}}</b></p>
         </div>
         <div class="mb-3" id="div-password">
             <label for="input-password" class="form-label">Password</label>
+            {% if data %}
+            <input type="password" class="form-control" id="input-password" name="input-password" autocomplete="off" value="{{data.password}}">
+            {% else %}
             <input type="password" class="form-control" id="input-password" name="input-password" autocomplete="off">
-            <p id="error-password"></p>
+            {% endif %}
+            
+            <p id="error-password"><b class="error-message">{{error.password}}</b></p>
         </div>
         <div class="mb-3" id="div-confirm-password">
             <label for="input-confirm-password" class="form-label">Confirm password</label>
+            {% if data %}
+            <input type="password" class="form-control" id="input-confirm-password" name="input-confirm-password" autocomplete="off" value="{{data.confirm_password}}">
+            {% else %}
             <input type="password" class="form-control" id="input-confirm-password" name="input-confirm-password" autocomplete="off">
-            <p id="error-confirm-password"></p>
+            {% endif %}
+            
+            <p id="error-confirm-password"><b class="error-message">{{error.confirm_password}}</b></p>
         </div>
         <div class="mb-3" id="div-birthday">
             <label for="input-birthday" class="form-label">Birthday</label>
+            {% if data %}
+            <input type="date" class="form-control" id="input-birthday" name="input-birthday" autocomplete="off" value="{{data.birthday}}">
+            {% else %}
             <input type="date" class="form-control" id="input-birthday" name="input-birthday" autocomplete="off">
-            <p id="error-calendar"></p>
+            {% endif %}
+            
+            <p id="error-calendar"><b class="error-message">{{error.birthday}}</b></p>
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="checkbox">
+            <input type="checkbox" class="form-check-input" id="checkbox" name="checkbox">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            <p id="error-checkbox"></p>
+            <p id="error-checkbox"><b class="error-message">{{error.checkbox}}</b></p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
