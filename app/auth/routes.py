@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, session
 from app.auth import auth_bp # importar el objeto BluePrint
 from app.auth.services import validate_input, validate_password
+from app.auth.models import validate_username_email, insert_user
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -53,6 +54,12 @@ def register():
         if error:
             return render_template("/auth/register.html", data=data, error=error)
         else:
+            validated = validate_username_email(data['username'], data['email'])
+            if  validated == True:
+                insert_user(data['name'], data['last_name'], data['username'],data['email'], data['password'], data['birthday'])
+            else:
+                return render_template("/auth/register.html", data=data, error=validated)
+
             return redirect(url_for('auth.login'))
     
     # pasamos un diccionario vacio de error en el get, la idea es poder usar jinja para buscar errores y poner sus valores 

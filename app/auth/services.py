@@ -3,6 +3,7 @@
     y funcionalidad del modulo
 """
 import re # para acceder a funciones de regular expresions
+import random
 
 REG_EXP_NAME = r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"  # la validacion para nombre y lastname es la misma
 REG_EXP_EMAIL = r"^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$"
@@ -36,3 +37,9 @@ def validate_password(password:str, confirm_password:str):
         return 0
     else:
         return -1
+
+def generate_account_number():
+
+    n = random.randint(1, 999_999_999)
+
+    return f"{n:012d}" # se le indica que formatee n, si n no cumple con 12 digitos rellena con 0 a la izquierda, la d indica decimal
