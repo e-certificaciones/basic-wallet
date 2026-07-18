@@ -87,3 +87,19 @@ def validate_username_and_password(username:str, password:str):
             return True
     
     return False
+
+# retorna el id de un usuario tomando como parametro su username
+def user_id_by_username(username:str):
+
+    db = get_db()
+
+    cursor = db.execute(
+        "SELECT id FROM users WHERE username = ?",
+        (username, ), 
+    )
+
+    user_id = cursor.fetchone()
+    user_id = user_id['id']
+
+    return user_id
+    

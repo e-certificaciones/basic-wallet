@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, session
 from app.auth import auth_bp # importar el objeto BluePrint
 from app.auth.services import validate_input, validate_password
-from app.auth.models import validate_username_email, insert_user, validate_username_and_password
+from app.auth.models import validate_username_email, insert_user, validate_username_and_password, user_id_by_username
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -26,7 +26,10 @@ def login():
                 error['error'] = "username or password invalid, if don't have a acount you can create one"
                 return render_template("/auth/login.html", error=error)
 
-            print("logeado")
+            # cuando se haga un login se crea la session
+            user_id = user_id_by_username(username)
+            session['user_id'] = user_id
+            return redirect(url_for('acounts.index'))
             
     return render_template("/auth/login.html", error={})
 
@@ -93,4 +96,7 @@ def register():
 @auth_bp.route("/logout")
 def logout():
 
-    return "logout"
+    session.clear()
+
+    return render_template("/auth/login.html", error={})
+
