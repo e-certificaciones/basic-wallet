@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 from app.config import Config
 from app.extensions import sess
 from app.auth import auth_bp
@@ -20,8 +20,10 @@ def create_app(config_class=Config):
     # Blueprints
     app.register_blueprint(auth_bp)
 
-    @app.route("/ping")
-    def ping():
-        return render_template("layout.html", string="HI")
-
+    '''
+    @app.route("/")
+    def index():
+     if not session.get('user_id'):
+        return redirect(url_for('auth.login'))  '''
+    
     return app

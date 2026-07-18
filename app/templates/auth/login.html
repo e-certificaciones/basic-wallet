@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block script %}
+<script src="/static/js/validate-login.js"></script>
+{% endblock %}
+
 {% block title%}
 login
 {% endblock %}
@@ -10,11 +14,13 @@ login
         <img src="/static/img/user.png" class="w-50 img-fluid d-block mx-auto" >
         <div class="card-body">
             <h5 class="card-title">Login</h5>
-            <form action="{{url_for('auth.login')}}" method="post"> <!-- es mas recomendable usar url_for('blue_print.route') que la ruta manual -->
+            <form action="{{url_for('auth.login')}}" method="post" id="form-login"> <!-- es mas recomendable usar url_for('blue_print.route') que la ruta manual -->
                 <label>Username: </label>
-                <input type="text" placeholder="username" name="username" autocomplete="off">
+                <input type="text" placeholder="username" id="username" name="username" autocomplete="off">
+                <p id="error-username"></p>
                 <label>Password: </label>
-                <input type="password" placeholder="password" name="password" autocomplete="off">
+                <input type="password" placeholder="password" id="password" name="password" autocomplete="off">
+                <p id="error-password"></p>
                 <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 2%;">Submit</button>
             </form>
         </div>

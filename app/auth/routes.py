@@ -6,6 +6,11 @@ from app.auth.models import validate_username_email, insert_user
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
 
+    if request.method == "POST":
+
+        username = request.form.get('username')
+        password = request.form.get('password')
+
     return render_template("/auth/login.html")
 
 @auth_bp.route("/register", methods=["GET", "POST"])

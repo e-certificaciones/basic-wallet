@@ -38,6 +38,7 @@ def validate_password(password:str, confirm_password:str):
     else:
         return -1
 
+# generador de numero de 12 digitos para los account numbers
 def generate_account_number():
 
     n = random.randint(1, 999_999_999)
