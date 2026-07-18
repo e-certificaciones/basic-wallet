@@ -22,6 +22,9 @@ def validate_input(value:str, validation_type:str):
     elif validation_type == "username":
         if re.fullmatch(REG_EXP_USERNAME,value):
             return True
+    elif validation_type == "password":
+        if re.fullmatch(REG_EXP_PASSWORD,value):
+            return True
     
     return False
 

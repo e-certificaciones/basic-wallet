@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block script %}
-<script src="/static/js/validate-login.js"></script>
+<script src="/static/js/validate-login.js"></script> 
 {% endblock %}
 
 {% block title%}
@@ -17,10 +17,13 @@ login
             <form action="{{url_for('auth.login')}}" method="post" id="form-login"> <!-- es mas recomendable usar url_for('blue_print.route') que la ruta manual -->
                 <label>Username: </label>
                 <input type="text" placeholder="username" id="username" name="username" autocomplete="off">
-                <p id="error-username"></p>
+                <p id="error-username"><b class="error-message">{{ error.username }}</b></p>
                 <label>Password: </label>
                 <input type="password" placeholder="password" id="password" name="password" autocomplete="off">
-                <p id="error-password"></p>
+                <p id="error-password"><b class="error-message">{{ error.password }}</b></p>
+                {% if error.error %}
+                <p><b class="error-message">{{ error.error }}</b></p>
+                {% endif %}
                 <button type="submit" class="btn btn-primary d-block mx-auto" style="margin-top: 2%;">Submit</button>
             </form>
         </div>

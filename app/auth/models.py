@@ -1,7 +1,7 @@
 from app.db import get_db
 from app.auth.services import generate_account_number
 import sqlite3
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # si ya hay usuario con el mismo email y mismo usaername 
 # retorna mensajes de error, si no , retorna un True
@@ -67,3 +67,23 @@ def insert_user(name:str, last_name:str, username:str, email:str, password_hash:
         except sqlite3.IntegrityError as e: # el integrity error es cuando se violenta el unique de un campo en este caso intentar guardar el mimo acont numer
             db.rollback() # hace un rollback de las operaciones antes del commit de la instacia de la bd
 
+# si el usuario y contrase;ia coinciden retornar True, si no False
+def validate_username_and_password(username:str, password:str):
+
+    db = get_db()
+
+    cursor = db.execute(
+        "SELECT password_hash FROM users WHERE username = ?",
+        (username, ),
+    )
+
+    password_db = cursor.fetchone()
+
+    if password_db is not None: # si la consulta esta vacia el execute retorna un None
+
+        password_db = password_db['password_hash']
+   
+        if check_password_hash(password_db, password):
+            return True
+    
+    return False
