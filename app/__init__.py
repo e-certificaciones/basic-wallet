@@ -5,6 +5,7 @@ from app.auth import auth_bp
 from app.db import close_db
 from app.acounts import acounts_bp
 from app.helpers import usd
+from app.transactions import transactions_bp
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -24,6 +25,7 @@ def create_app(config_class=Config):
     # Blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(acounts_bp)
+    app.register_blueprint(transactions_bp)
 
     # es la ruta de apertura de la app
     @app.route("/")

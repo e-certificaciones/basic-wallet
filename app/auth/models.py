@@ -58,7 +58,7 @@ def insert_user(name:str, last_name:str, username:str, email:str, password_hash:
             n = generate_account_number()
 
             db.execute(
-                "INSERT INTO acounts(user_id, account_number, balance) VALUES(?,?,?)",
+                "INSERT INTO acounts(user_id, acount_number, balance) VALUES(?,?,?)",
                 (user_id, n, 10000, ),
             )
 

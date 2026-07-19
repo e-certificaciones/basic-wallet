@@ -1,0 +1,25 @@
+from decimal import Decimal # representa cantidades monetarias de forma exacta
+import re
+
+REG_EXP_ACOUNT_NUMBER = r"^[0-9]{12}$"
+
+# validar el numero de cuenta con expresion regular
+def validate_acount_number(acount_number:str):
+
+    if re.fullmatch(REG_EXP_ACOUNT_NUMBER, acount_number):
+        return True
+
+    return False
+
+# valida si el dato ingresado es de tipo numerico
+def validate_amount(amount:str):
+
+    try:
+        amount_decimal = Decimal(amount)
+
+        if amount_decimal > 0:
+            return amount_decimal
+        
+        return False
+    except:
+        return False
