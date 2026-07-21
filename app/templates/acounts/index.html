@@ -30,14 +30,14 @@ index
         <img src="https://cdn-icons-png.flaticon.com/512/4121/4121776.png" class="card-img-top;" alt="...">
         <div class="card-body">
             <h5 class="card-title">Money sent</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <p class="card-text">{{ send_money | usd }}</p>
         </div>
     </div>
     <div class="card" style="width: 18rem; margin-right: 2%;">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcQLDpm6iW_tyBQfae4r8eRBmokjRla0B16a2SosvFsA&s=10" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Money received</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <p class="card-text">{{ recipient_money | usd }}</p>
         </div>
     </div>
 </div>
