@@ -1,5 +1,5 @@
 from decimal import Decimal # representa cantidades monetarias de forma exacta
-import re
+import re, random
 
 REG_EXP_ACOUNT_NUMBER = r"^[0-9]{12}$"
 
@@ -23,3 +23,10 @@ def validate_amount(amount:str):
         return False
     except:
         return False
+    
+# generador de numero de 12 digitos para los account numbers
+def generate_transaction_number():
+
+    n = random.randint(1, 999_999)
+
+    return f"{n:06d}" # se le indica que formatee n, si n no cumple con 12 digitos rellena con 0 a la izquierda, la d indica decimal
