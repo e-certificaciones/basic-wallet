@@ -28,5 +28,3 @@ CREATE TABLE transactions(
     FOREIGN KEY(recipient_acount_id) REFERENCES acounts(id)
 );
 
--- admin
--- admin1
